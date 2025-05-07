@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 </head>
  <body>
- 
+
     <div class="header-bg">
         <h1>KrustyKrab - HackMyVM - Level: Medium - Bericht</h1>
         <div class="level-container">
@@ -2822,8 +2822,15 @@ Der nächste Schritt im Originalbericht zeigt die interne Zutatenliste aus Ghidr
 Zu diesem Zeitpunkt ist die Schwachstelle bereits identifiziert. Die Empfehlungen bleiben dieselben wie bei der Ghidra-Analyse: Programm entfernen oder Sudo-Regel entfernen.
 </p>
 <p class="analysis">
-Der nächste Abschnitt im Originalbericht beschreibt das Auffinden der internen `ingredients`-Liste im Ghidra-Output. Die Beschreibung lautet: "ingredients : hier kommt ein bild über die ingredients suche rein wie wir die tabelle der ghidra search laden und anzeigen... <img>ghidra_ingredients_Suche_1.jpg</img> ####### Diese Liste zeigt die Reihenfolge, in der die Zutat-Strings im Speicher definiert sind. Das ist die wahre "korrekte" Reihenfolge (Index 0-9), die das Programm für die Validierung verwendet: Bottom bun (an Adresse 00102008), Patty (an Adresse 00102013), Lettuce (an Adresse 00102019), Cheese (an Adresse 00102021), Onion (an Adresse 00102028), Tomato (an Adresse 0010202e), Ketchup (an Adresse 00102035), Mustard (an Adresse 0010203d), Pickles (an Adresse 00102045), Top bun (an Adresse 0010204d) #######"
-Gemäß den Regeln wird der Bild-Tag entfernt und die Beschreibung verwendet.
+Der nächste Abschnitt im Originalbericht beschreibt das Auffinden der internen `ingredients`-Liste im Ghidra-Output. Die Beschreibung lautet: "ingredients : hier kommt ein bild über die ingredients suche rein wie wir die tabelle der ghidra search laden und anzeigen... 
+
+<img src="ghidra_ingredients_Suche_1.jpg" alt="Ghidra Screenshot: Interne Zutatenliste (ingredients) im Speicher">
+Diese Liste zeigt die Reihenfolge, in der die Zutat-Strings im Speicher definiert sind. Das ist die wahre "korrekte" 
+Reihenfolge (Index 0-9), die das Programm für die Validierung verwendet: Bottom bun (an Adresse 00102008), Patty 
+(an Adresse 00102013), Lettuce (an Adresse 00102019), Cheese (an Adresse 00102021), Onion (an Adresse 00102028), 
+Tomato (an Adresse 0010202e), Ketchup (an Adresse 00102035), Mustard (an Adresse 0010203d), 
+Pickles (an Adresse 00102045), Top bun (an Adresse 0010204d) 
+" 
 </p>
 <p class="evaluation"><strong>Bewertung:</strong>
 Die Beschreibung aus dem Originalbericht liefert die entscheidende Information: die interne, korrekte Reihenfolge der Krabby Patty Zutaten, wie sie im `ingredients`-Array des Programms definiert ist:
@@ -2840,7 +2847,10 @@ Die Beschreibung aus dem Originalbericht liefert die entscheidende Information: 
 Diese feste Reihenfolge muss nun auf die zufällig angezeigten Buchstaben A-J gemappt werden, um die korrekte Eingabe zu ermitteln.
 </p>
 <p class="analysis">
-Der nächste Abschnitt im Originalbericht lautet: "wenn wir etwas runterscrollen sehen wir dann die Zutatenliste des Tools, und die Adressenposition derer: <img>ghidra_ingredients_Suche_2.jpg</img> ####### Jetzt nehmen wir die Zuordnung aus deiner aktuellen (letzten) Runde: A: Tomato, B: Lettuce, C: Mustard, D: Onion, E: Cheese, F: Patty, G: Bottom bun, H: Ketchup, I: Pickles, J: Top bun. Und wir mappen die Definitionsreihenfolge auf die aktuellen Buchstaben: 0 (Bottom bun): Ist aktuell Buchstabe G, 1 (Patty): Ist aktuell Buchstabe F, 2 (Lettuce): Ist aktuell Buchstabe B, 3 (Cheese): Ist aktuell Buchstabe E, 4 (Onion): Ist aktuell Buchstabe D, 5 (Tomato): Ist aktuell Buchstabe A, 6 (Ketchup): Ist aktuell Buchstabe H, 7 (Mustard): Ist aktuell Buchstabe C, 8 (Pickles): Ist aktuell Buchstabe I, 9 (Top bun): Ist aktuell Buchstabe J. Die endlich korrekte Eingabe lautet: GFBEDAHCIJ #######"
+Der nächste Abschnitt im Originalbericht lautet: "wenn wir etwas runterscrollen sehen wir dann die Zutatenliste des Tools, und die Adressenposition derer:
+
+<img src="ghidra_ingredients_Suche_2.jpg" alt="Ghidra Screenshot: Interne Zutatenliste (ingredients) im Speicher">
+  Jetzt nehmen wir die Zuordnung aus deiner aktuellen (letzten) Runde: A: Tomato, B: Lettuce, C: Mustard, D: Onion, E: Cheese, F: Patty, G: Bottom bun, H: Ketchup, I: Pickles, J: Top bun. Und wir mappen die Definitionsreihenfolge auf die aktuellen Buchstaben: 0 (Bottom bun): Ist aktuell Buchstabe G, 1 (Patty): Ist aktuell Buchstabe F, 2 (Lettuce): Ist aktuell Buchstabe B, 3 (Cheese): Ist aktuell Buchstabe E, 4 (Onion): Ist aktuell Buchstabe D, 5 (Tomato): Ist aktuell Buchstabe A, 6 (Ketchup): Ist aktuell Buchstabe H, 7 (Mustard): Ist aktuell Buchstabe C, 8 (Pickles): Ist aktuell Buchstabe I, 9 (Top bun): Ist aktuell Buchstabe J. Die endlich korrekte Eingabe lautet: GFBEDAHCIJ 
 </p>
 <p class="evaluation"><strong>Bewertung:</strong>
 Die Beschreibung erklärt den Mapping-Prozess perfekt.
@@ -3875,7 +3885,7 @@ Voller Erfolg! Die Privilege Escalation zu `root` durch Path Hijacking war erfol
 </div>
 
 <footer class="footer">
-    <p>Darkspirit - Cyber Security Reports</p>
+    <p>DarkSpirit - Cyber Security Reports</p>
     <p>Berichtsdatum: 27. April 2025</p>
 </footer>
  
